@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "killall node && nodemon server"
   },
   "keywords": [],
   "author": "",
