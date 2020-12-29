@@ -32,13 +32,13 @@ const BusinessSchema = new mongoose.Schema({
     default: [],
   },
   timeBooked: {
-    type: {
-      today: {},
-      tomorrow: {},
+    today: {
+      type: [{ type: String }],
+      default: [],
     },
-    default: {
-      today: {},
-      tomorrow: {},
+    tomorrow: {
+      type: [{ type: String }],
+      default: [],
     },
   },
 });

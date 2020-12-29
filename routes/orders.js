@@ -18,7 +18,10 @@ router.post(
     check('businessEmail', 'Please enter a business email').isEmail(),
     check('orderDate', 'Please enter an order date').not().isEmpty(),
     check('orderType', 'Please enter an order type').not().isEmpty(),
-    check('tomorrowOrToday', 'Please enter a day').not().isEmpty(),
+    check(
+      'tomorrowOrToday',
+      'Please enter if the order is today or tomorrow'
+    ).isIn(['today', 'tomorrow']),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -39,15 +42,11 @@ router.post(
         return res.status(400).json({ msg: 'Business do not exists' });
       }
 
-      console.log(business);
-
-      if (business.timeBooked[tomorrowOrToday][orderDate]) {
+      if (business.timeBooked[tomorrowOrToday].indexOf(orderDate) >= 0) {
         return res.json({ msg: 'This time is booked' });
       }
 
-      business.timeBooked[tomorrowOrToday][orderDate] = true;
-
-      //console.log(business);
+      business.timeBooked[tomorrowOrToday].push(orderDate);
 
       const order = new Order({
         userEmail: user.email,
@@ -62,9 +61,9 @@ router.post(
       user.orders.push(order._id);
       business.orders.push(order._id);
       await user.save();
-      console.log(await business.save());
+      await business.save();
 
-      res.json({ msg: 'Order is registered' });
+      res.json(business);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
