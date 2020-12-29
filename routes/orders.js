@@ -15,7 +15,6 @@ router.post(
   '/',
   auth,
   [
-    check('userEmail', 'Please add cutomer email').isEmail(),
     check('businessEmail', 'Please enter a business email').isEmail(),
     check('orderDate', 'Please enter an order date').not().isEmpty(),
     check('orderType', 'Please enter an order type').not().isEmpty(),
@@ -26,11 +25,11 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { userEmail, businessEmail, orderDate, orderType } = req.body;
+    const { businessEmail, orderDate, orderType } = req.body;
 
     try {
-      let business = await Business.findOne({ email: businessEmail });
-      let user = await User.findOne({ email: userEmail });
+      const business = await Business.findOne({ email: businessEmail });
+      const user = await User.findById(req.user.id);
 
       if (!user) {
         return res.status(400).json({ msg: 'User do not exists' });
@@ -40,7 +39,7 @@ router.post(
       }
 
       const order = new Order({
-        userEmail,
+        userEmail: user.email,
         businessEmail,
         orderDate,
         orderType,
