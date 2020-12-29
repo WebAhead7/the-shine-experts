@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const BusinessSchema = new mongoose.Schema({
   name: {
@@ -10,6 +10,10 @@ const BusinessSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   phone: {
     type: String,
     required: true,
@@ -18,6 +22,15 @@ const BusinessSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  orders: {
+    type: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Order',
+      },
+    ],
+    default: [],
+  },
 });
 
-module.exports = mongoose.model("business", BusinessSchema);
+module.exports = mongoose.model('business', BusinessSchema);

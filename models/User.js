@@ -19,10 +19,14 @@ const UserSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
-  type: {
-    type: String,
-    required: true,
-    default: 'customer',
+  orders: {
+    type: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Order',
+      },
+    ],
+    default: [],
   },
 });
 
