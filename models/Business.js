@@ -31,6 +31,16 @@ const BusinessSchema = new mongoose.Schema({
     ],
     default: [],
   },
+  timeBooked: {
+    type: {
+      today: {},
+      tomorrow: {},
+    },
+    default: {
+      today: {},
+      tomorrow: {},
+    },
+  },
 });
 
 module.exports = mongoose.model('business', BusinessSchema);
