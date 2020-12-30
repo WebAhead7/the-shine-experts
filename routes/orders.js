@@ -45,7 +45,7 @@ router.post(
       }
 
       if (business.timeBooked[tomorrowOrToday].indexOf(orderDate) >= 0) {
-        return res.json({ msg: 'This time is booked' });
+        return res.status(400).json({ msg: 'This time is booked' });
       }
 
       business.timeBooked[tomorrowOrToday].push(orderDate);
