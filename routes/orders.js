@@ -8,6 +8,8 @@ const User = require('../models/User');
 
 const auth = require('../middleware/auth');
 
+const carWashingTypes = require('../types/carWashTypes');
+
 // @route POST api/orders
 // @desc Resgister a order
 // @access Private
