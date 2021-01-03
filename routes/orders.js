@@ -6,16 +6,14 @@ const Business = require('../models/Business');
 const Order = require('../models/Order');
 const User = require('../models/User');
 
-const auth = require('../middleware/auth');
-
-const carWashingTypes = require('../types/carWashTypes');
+const authUser = require('../middleware/authUser');
 
 // @route POST api/orders
 // @desc Resgister a order
 // @access Private
 router.post(
   '/',
-  auth,
+  authUser,
   [
     check('businessEmail', 'Please enter a business email').isEmail(),
     check('orderDate', 'Please enter an order date').not().isEmpty(),

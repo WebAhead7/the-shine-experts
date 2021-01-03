@@ -6,14 +6,14 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 
-const auth = require('../middleware/auth');
+const authUser = require('../middleware/authUser');
 
 const User = require('../models/User');
 
 // @route GET api/auth
 // @desc Get logged in user
 // @access Private
-router.get('/', auth, async (req, res) => {
+router.get('/', authUser, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
