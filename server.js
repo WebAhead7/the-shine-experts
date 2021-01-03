@@ -12,8 +12,9 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 app.use('/api/users', require('./routes/users'));
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/authUser', require('./routes/authUser'));
 app.use('/api/businesses', require('./routes/businesses'));
+app.use('/api/authBusiness', require('./routes/authBusiness'));
 app.use('/api/orders', require('./routes/orders'));
 
 const PORT = process.env.PORT || 5000;
