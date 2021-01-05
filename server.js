@@ -9,12 +9,12 @@ connectDB();
 
 // Init Middleware
 
-const corsOptions = {
-  origin: 'https://the-shine-experts.netlify.app/',
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// const corsOptions = {
+//   origin: 'https://the-shine-experts.netlify.app/',
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json({ extended: false }));
 
 app.use('/api/users', require('./routes/users'));
