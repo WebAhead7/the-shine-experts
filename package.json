@@ -17,7 +17,7 @@
     "express-validator": "^6.7.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.0",
-    "pm2": "^2.10.4"
+    "pm2": "^4.5.1"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
