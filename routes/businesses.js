@@ -73,7 +73,7 @@ router.post(
 // @route GET api/businesses?email
 // @desc get the appointments business
 // @access Private
-router.get('/:email', async (req, res) => {
+router.get('/:email', auth, async (req, res) => {
   const { email } = req.params;
 
   try {
