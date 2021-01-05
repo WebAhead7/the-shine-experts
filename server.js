@@ -9,14 +9,15 @@ connectDB();
 
 // Init Middleware
 
-const corsOptions = {
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: '*',
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   preflightContinue: false,
+//   optionsSuccessStatus: 200,
+//   'Access-Control-Allow-Origin': '*',
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json({ extended: false }));
 
 app.use('/api/users', require('./routes/users'));
