@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken');
 
 const Business = require('../models/Business');
 
+const auth = require('../middleware/auth.js');
+
 // @route POST api/businesses
 // @desc Resgister a business
 // @access Public
@@ -63,10 +65,28 @@ router.post(
         }
       );
     } catch (err) {
-      console.error(err.message);
       res.status(500).send('Server error');
     }
   }
 );
+
+// @route GET api/businesses?email
+// @desc get the appointments business
+// @access Private
+router.get('/:email', async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    let business = await Business.findOne({ email });
+
+    if (!business) {
+      return res.status(400).json({ msg: 'Business do not exists' });
+    }
+
+    res.json(business.appointments);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
 
 module.exports = router;

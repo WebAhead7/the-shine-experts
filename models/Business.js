@@ -31,7 +31,7 @@ const BusinessSchema = new mongoose.Schema({
     ],
     default: [],
   },
-  timeBooked: {
+  appointments: {
     today: {
       type: [{ type: String }],
       default: [],

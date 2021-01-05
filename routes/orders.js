@@ -42,11 +42,11 @@ router.post(
         return res.status(400).json({ msg: 'Business do not exists' });
       }
 
-      if (business.timeBooked[tomorrowOrToday].indexOf(orderDate) >= 0) {
+      if (business.appointments[tomorrowOrToday].indexOf(orderDate) >= 0) {
         return res.status(400).json({ msg: 'This time is booked' });
       }
 
-      business.timeBooked[tomorrowOrToday].push(orderDate);
+      business.appointments[tomorrowOrToday].push(orderDate);
 
       const order = new Order({
         userEmail: user.email,
