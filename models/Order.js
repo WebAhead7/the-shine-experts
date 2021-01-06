@@ -14,7 +14,7 @@ const OrderSchema = new mongoose.Schema({
     required: true,
   },
   orderType: {
-    type: Array,
+    type: String,
     required: true,
   },
   tomorrowOrToday: {
