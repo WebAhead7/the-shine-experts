@@ -71,4 +71,27 @@ router.post(
   }
 );
 
+router.get('/:email', authUser, async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    let business = await Business.findOne({ email });
+
+    if (!business) {
+      return res.status(400).json({ msg: 'Business do not exists' });
+    }
+
+    const businessOrdersIds = business.orders;
+    let orders = [];
+    businessOrdersIds.forEarch(async (orderId) => {
+      const order = await Order.findById(orderId);
+      orders.push(order);
+    });
+
+    res.json(orders);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
