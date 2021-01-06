@@ -82,13 +82,17 @@ router.get('/:email', authUser, async (req, res) => {
     }
 
     const businessOrdersIds = business.orders;
-    let orders = [];
-    businessOrdersIds.forEarch(async (orderId) => {
+
+    const orders = [];
+    for (let i = 0; i < businessOrdersIds.length; i++) {
+      const orderId = businessOrdersIds[i];
       const order = await Order.findById(orderId);
       orders.push(order);
-    });
+    }
 
-    res.json(orders);
+    console.log(orders);
+
+    res.json({ orders });
   } catch (err) {
     res.status(500).send('Server error');
   }
