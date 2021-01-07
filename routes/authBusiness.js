@@ -20,7 +20,6 @@ router.get('/', authBusiness, async (req, res) => {
     );
     res.json(business);
   } catch (error) {
-    console.error(error.message);
     res.status(500).send('Server error');
   }
 });
@@ -73,7 +72,6 @@ router.post(
         }
       );
     } catch (error) {
-      console.error(error.message);
       res.status(400).send('Server error');
     }
   }

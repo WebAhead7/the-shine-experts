@@ -7,6 +7,7 @@ const Order = require('../models/Order');
 const User = require('../models/User');
 
 const authUser = require('../middleware/authUser');
+const authBusiness = require('../middleware/authBusiness');
 
 // @route POST api/orders
 // @desc Resgister a order
@@ -65,13 +66,12 @@ router.post(
 
       res.json(business);
     } catch (err) {
-      console.error(err.message);
       res.status(500).send('Server error');
     }
   }
 );
 
-router.get('/:email', authUser, async (req, res) => {
+router.get('/:email', authBusiness, async (req, res) => {
   const { email } = req.params;
 
   try {
