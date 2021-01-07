@@ -93,8 +93,6 @@ router.get('/:email', authUser, async (req, res) => {
       }
     }
 
-    console.log(orders);
-
     res.json({ orders });
   } catch (err) {
     res.status(500).send('Server error');
