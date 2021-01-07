@@ -87,7 +87,10 @@ router.get('/:email', authUser, async (req, res) => {
     for (let i = 0; i < businessOrdersIds.length; i++) {
       const orderId = businessOrdersIds[i];
       const order = await Order.findById(orderId);
-      orders.push(order);
+
+      if (order) {
+        orders.push(order);
+      }
     }
 
     console.log(orders);
